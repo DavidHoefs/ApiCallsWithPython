@@ -22,15 +22,9 @@ dataToSend = []
 
 for i in range(5):
     data = {"temperature":70+i,"humidity":0.20 * 100,"timeCaptured":"2020-10-09T14:00:00"}
-    dataToSend.append(data)
-    
-
-
-
+    dataToSend.append(data)   
 #POST requests to API
 postURL = "https://weatherstationapi.azurewebsites.net/api/TemperatureSensor/InsertSet"
-
-
 req = requests.post(url = postURL,json = dataToSend,headers = headers)
 reqdata = req.json()
 print(reqdata)
