@@ -1,4 +1,6 @@
 import requests
+import json
+import http.client
 from requests.structures import CaseInsensitiveDict
 
 # GET requests from API
@@ -11,16 +13,26 @@ headers["Authorization"] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRw
 
 resp = requests.get(url, headers=headers)
 
-data = resp.json()
-print(data)
+ data = resp.json()
+ print(data)
 
 #---------------------------------------------------------------------------------------------------
+# test data
+dataToSend = []
+
+for i in range(5):
+    data = {"temperature":70+i,"humidity":0.20 * 100,"timeCaptured":"2020-10-09T14:00:00"}
+    dataToSend.append(data)
+    
+
+
+
 #POST requests to API
 postURL = "https://weatherstationapi.azurewebsites.net/api/TemperatureSensor/InsertSet"
-dataToSend = [{"temperature" : 85,"humidity":0.20,"timeCaptured" : "2020-10-19T12:00:00"},
-              {"temperature" : 85,"humidity":0.20,"timeCaptured" : "2020-10-19T12:05:00"},
-              {"temperature" : 87,"humidity":0.20,"timeCaptured" : "2020-10-19T12:10:00"}]
+
 
 req = requests.post(url = postURL,json = dataToSend,headers = headers)
-print(req.json())
+reqdata = req.json()
+print(reqdata)
 
+#

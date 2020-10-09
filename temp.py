@@ -6,7 +6,7 @@ import ssl
 import pprint
 
 cpu = CPUTemperature()
-conn = http.client.HTTPSConnection('192.168.0.110:45458',context = ssl._create_unverified_context())
+conn = http.client.HTTPSConnection('https://weatherstationapi.azurewebsites.net/api/TemperatureSensor/InsertSet',context = ssl._create_unverified_context())
 
 headers = {'Content-type': 'application/json'}
 for i in range(150):
